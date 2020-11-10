@@ -1,7 +1,7 @@
 1. Install packages:
 ```
-    pip install Genderize
-    pip install ethnicolr
+pip install Genderize
+pip install ethnicolr
 ```
 2. Use python 2 for the project, some packages seems not working in python3
 
