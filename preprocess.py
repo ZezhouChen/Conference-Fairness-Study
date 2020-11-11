@@ -32,7 +32,9 @@ print(Genderize().get(names))
 # first name column -> first name list -> genderize -> gender list -> gender column
 
 # last name column -> race
-
-# clear some uncessary columns
+df = pred_wiki_ln(df, 'last_name')
+df['race'] = df['race'].apply(lambda x : x.split(',')[-1])
 
 # save to csv
+df['decision'] = df['decision'].apply(lambda x : x.split(' ')[0])
+df[['gender', 'race', 'decision']].to_csv()
