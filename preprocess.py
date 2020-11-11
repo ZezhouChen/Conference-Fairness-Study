@@ -23,3 +23,16 @@ print(pred_wiki_ln(df, 'name'))
 names = ['Zezhou', 'Zitong', 'Mehul', 'Yash', 'Ali', 'Giulia']
 print(Genderize().get(names))
 
+
+# authors -> first author
+
+
+# split first/last name
+
+# first name column -> first name list -> genderize -> gender list -> gender column
+
+# last name column -> race
+
+# clear some uncessary columns
+
+# save to csv
