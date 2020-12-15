@@ -30,7 +30,12 @@ df = df_pp[['paper_id','first_name', 'last_name', 'decision']]
 # first name column -> first name list -> genderize -> gender list -> gender column
 first_name_list = list(df['first_name'])
 
-genders = Genderize().get(first_name_list)
+genders = Genderize(
+    user_agent='GenderizeDocs/0.0',
+    api_key='c2a7acf70ef5f74435f0bcf4d075a5e4',
+    timeout=5.0
+).get(first_name_list)
+
 
 gender_df = pd.DataFrame(genders)
 df['gender'] = gender_df['gender']
