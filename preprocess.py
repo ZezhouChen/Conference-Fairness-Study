@@ -8,11 +8,24 @@ df = pd.read_csv(path)
 
 # authors -> first author
 df['first_author'] = df['authors'].str.split(',').str[0]
+df['second_author'] = df['authors'].str.split(',').str[1]
+
+df_pp_1 = df[['paper_id', 'first_author', 'decision']]
+df_pp_2 = df[['paper_id', 'second_author', 'decision']]
 
 # split first/last name
-df.loc[:,'first_name'] = df.loc[:,'first_author'].str.split().str[0]
-df.loc[:,'last_name'] = df.loc[:,'first_author'].str.split().str[1]
-df = df[['paper_id', 'first_author' ,'first_name', 'last_name', 'decision']]
+df_pp_1.loc[:,'first_name'] = df_pp_1['first_author'].str.split().str[0]
+df_pp_1['last_name'] = df_pp_1['first_author'].str.split().str[1]
+
+df_pp_2.loc[:,'first_name'] = df_pp_2['second_author'].str.split().str[0]
+df_pp_2['last_name'] = df_pp_2['second_author'].str.split().str[1]
+
+frames = [df_pp_1, df_pp_2]
+df_pp = pd.concat(frames)
+df_pp.drop('first_author', inplace=True, axis=1)
+df_pp.drop('second_author', inplace=True, axis=1)
+
+df = df_pp[['paper_id','first_name', 'last_name', 'decision']]
 
 # first name column -> first name list -> genderize -> gender list -> gender column
 first_name_list = list(df['first_name'])
